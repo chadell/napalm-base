@@ -2,9 +2,13 @@
 import uuid
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 
 __author__ = 'David Barroso <dbarrosop@dravetech.com>'
+
+def parse_requirements(requirements_file):
+    with open(requirements_file) as f:
+        return f.read().strip().split('\n')
+
 
 install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
 reqs = [str(ir.req) for ir in install_reqs]
